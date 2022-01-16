@@ -24,23 +24,23 @@ model = Sequential([
     MaxPooling2D(pool_size=(1,1)),
     Conv2D(32,(3,3),activation='relu'),
     MaxPooling2D(pool_size=(1,1)),
-#32 convolution filters used each of size 3x3
-#again
+    #32 convolution filters used each of size 3x3
+    #again
     Conv2D(64, (3, 3), activation='relu'),
     MaxPooling2D(pool_size=(1,1)),
 
-#64 convolution filters used each of size 3x3
-#choose the best features via pooling
+    #64 convolution filters used each of size 3x3
+    #choose the best features via pooling
     
-#randomly turn neurons on and off to improve convergence
+    #randomly turn neurons on and off to improve convergence
     Dropout(0.25),
-#flatten since too many dimensions, we only want a classification output
+    #flatten since too many dimensions, we only want a classification output
     Flatten(),
-#fully connected to get all relevant data
+    #fully connected to get all relevant data
     Dense(128, activation='relu'),
-#one more dropout for convergence' sake :) 
+    #one more dropout for convergence' sake :) 
     Dropout(0.5),
-#output a softmax to squash the matrix into output probabilities
+    #output a softmax to squash the matrix into output probabilities
     Dense(2, activation='softmax')
 ])
 
@@ -48,4 +48,4 @@ model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accurac
 
 model.fit_generator(train_batch, validation_data=valid_batch,epochs=15,steps_per_epoch=SPE ,validation_steps=VS)
 
-model.save('modelFile1.h5', overwrite=True)
+model.save('modelFile.h5', overwrite=True)
